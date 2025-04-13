@@ -2,11 +2,14 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  css: ['~/assets/main.css'],
 
   modules: [
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/eslint'
-  ]
+    '@nuxt/eslint',
+    '@nuxt/icon'
+  ],
+
+  
 })

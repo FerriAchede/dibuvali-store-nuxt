@@ -1,0 +1,68 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Colores globales */
+:root {
+    --color-background-content: #FFEAE9;
+    --color-footer: #fdeae0;
+    --color-background: #FFEFEE;
+    --color-azul-celeste: #2AFFF7;
+    --color-morado: #823BFB;
+    --color-morado-hover: #7331e6;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-background);
+    overflow-x: hidden;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: var(--color-morado);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Efectos de hover */
+.navigation a:hover,.left-icons a:hover,.icons a:hover, .footer-links a:hover, .pages li a:hover {
+    transform: scale(1.02);
+    color: var(--color-morado-hover);
+}
+
+/* Efecto aparición */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Queries */
+@media (min-width: 992px) { /* A partir de lg */
+    .w-lg-auto {
+        width: auto !important;
+    }
+}
+
+@media (min-width: 1200px) { /* A partir de xl */
+    .w-xl-auto {
+        width: auto !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-image {
+        height: 192px;
+        object-fit: cover;
+    }
+}
