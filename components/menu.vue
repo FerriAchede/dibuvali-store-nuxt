@@ -1,4 +1,5 @@
 <template>
+    <Announcement/>
       <header class="header-desktop d-none d-md-flex">
         <div class="left-icons">
             <Icon name="ic:baseline-search"/>
