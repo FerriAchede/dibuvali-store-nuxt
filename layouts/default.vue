@@ -1,6 +1,8 @@
 <template>
+    <AnnouncementBar/>
     <Menu/>
     <slot/>
+    <FooterView/>
 </template>
 <script>
 export default {
