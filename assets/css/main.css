@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* General */
 * {
     margin: 0;
@@ -18,6 +20,7 @@
 /* Estilo general del cuerpo */
 body {
     font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Helvetica', 'Arial', sans-serif; */
     background-color: var(--color-background);
     overflow-x: hidden;
 }
@@ -26,11 +29,11 @@ body {
 a {
     text-decoration: none;
     color: var(--color-morado);
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, color 0.1s ease;
 }
 
 /* Efectos de hover */
-.navigation a:hover,.left-icons a:hover,.icons a:hover, .footer-links a:hover, .pages li a:hover {
+.navigation a:hover,.left-icons a:hover, .footer-links a:hover, .pages li a:hover {
     transform: scale(1.02);
     color: var(--color-morado-hover);
 }

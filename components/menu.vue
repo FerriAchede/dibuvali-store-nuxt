@@ -5,7 +5,7 @@
         </div>
 
         <div class="logo-nav-container">
-            <img src="/logotxt.png" alt="Dibu Vali" class="profile-pic">
+            <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic">
             <nav class="navigation">
                 <a href="./index.html">Home</a>
                 <a href="./new/index.html">New!</a>
