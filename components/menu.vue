@@ -7,11 +7,11 @@
         <div class="logo-nav-container">
             <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic">
             <nav class="navigation">
-                <a href="./index.html">Home</a>
-                <a href="./new/index.html">New!</a>
-                <a href="./products/index.html">Products</a>
+                <a href="./index.html">Inicio</a>
+                <a href="./new/index.html">Nuevo</a>
+                <a href="./products/index.html">Productos</a>
                 <!-- <a href="#">Collections</a> -->
-                <a href="#about-me">About me</a>
+                <a href="#about-me">Sobre mí</a>
                 <!-- <a href="#">Contact</a> -->
             </nav>
         </div>

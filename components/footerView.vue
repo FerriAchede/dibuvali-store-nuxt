@@ -1,13 +1,13 @@
 <template>
     <footer>
-        <h4>QUICK LINKS</h4>
-        <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="#">Contact</a>
-            <a href="#">Terms of service</a>
-            <a href="#">Privacy policy</a>
-            <a href="#">Shipping</a>
-        </div>
+        <h4>ENLACES RÁPIDOS</h4>
+            <div class="footer-links">
+                <a href="../index.html">Inicio</a>
+                <a href="#">Contacto</a>
+                <a href="#">Términos de servicio</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Envíos</a>
+            </div>
         <div class="icons">
             <a href="https://www.instagram.com/dibu_vali/"><Icon name="simple-icons:instagram"/></a>
             <a href="https://www.youtube.com/@Dibu_Vali"><Icon name="simple-icons:youtube"/></a>
@@ -47,5 +47,10 @@ footer h4{
 footer .icons {
     display: flex;
     justify-content: space-evenly;
+}
+
+footer .icons span {
+    width: 18px;
+    height: 18px;
 }
 </style>
