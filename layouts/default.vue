@@ -2,8 +2,8 @@
     <AnnouncementBar/>
     <Menu/>
     <carrouselBanner/>
-    <AnnouncementBar/>
-
+    <AnnouncementBar :show-announcement="false" />
+    
     <slot/>
     <FooterView/>
 </template>
