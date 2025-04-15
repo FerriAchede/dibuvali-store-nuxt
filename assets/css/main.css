@@ -51,21 +51,8 @@ a {
 }
 
 /* Media Queries */
-@media (min-width: 992px) { /* A partir de lg */
-    .w-lg-auto {
-        width: auto !important;
-    }
-}
-
 @media (min-width: 1200px) { /* A partir de xl */
     .w-xl-auto {
         width: auto !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .banner-image {
-        height: 192px;
-        object-fit: cover;
     }
 }
