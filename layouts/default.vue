@@ -1,6 +1,9 @@
 <template>
     <AnnouncementBar/>
     <Menu/>
+    <carrouselBanner/>
+    <AnnouncementBar/>
+
     <slot/>
     <FooterView/>
 </template>

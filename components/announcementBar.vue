@@ -1,6 +1,9 @@
 <template>
     <div class="advertisement-bar" id="ad-bar-top">
         <p>New tote bag!</p>
+        <i class="fas fa-star"></i>
+          <i class="fas fa-star mx-1"></i>
+          <i class="fas fa-star"></i>
     </div>
 </template>
 <script>
