@@ -9,9 +9,9 @@
                 <a href="#">Envíos</a>
             </div>
         <div class="icons">
-            <a href="https://www.instagram.com/dibu_vali/"><Icon name="simple-icons:instagram"/></a>
-            <a href="https://www.youtube.com/@Dibu_Vali"><Icon name="simple-icons:youtube"/></a>
-            <a href="https://www.tiktok.com/@dibu_vali"><Icon name="simple-icons:tiktok"/></a>
+            <a href="https://www.instagram.com/dibu_vali/"><Icon name="mingcute:instagram-fill"/></a>
+            <a href="https://www.tiktok.com/@dibu_vali"><Icon name="mingcute:tiktok-fill"/></a>
+            <a href="https://www.youtube.com/@Dibu_Vali"><Icon name="mingcute:youtube-fill"/></a>
         </div>
     </footer>
 </template>
@@ -50,7 +50,7 @@ footer .icons {
 }
 
 footer .icons span {
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 24px;
 }
 </style>
