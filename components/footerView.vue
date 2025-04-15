@@ -20,7 +20,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 footer{
     background-color: var(--color-footer);
     padding: 30px;
@@ -34,6 +34,7 @@ footer{
 
 footer h4{
     color: var(--color-morado);
+    font-weight: 500;
 }
 
 .footer-links {
@@ -49,8 +50,19 @@ footer .icons {
     justify-content: space-evenly;
 }
 
-footer .icons span {
+footer .icons {
     width: 32px;
     height: 24px;
+}
+
+.iconify {
+    font-size: 1.5rem;
+    color: var(--color-morado);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.iconify:hover {
+    transform: scale(1.05);
+    color: var(--color-morado-hover);
 }
 </style>

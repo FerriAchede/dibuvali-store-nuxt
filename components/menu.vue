@@ -1,7 +1,7 @@
 <template>
       <header class="header-desktop d-none d-md-flex">
         <div class="left-icons">
-            <Icon name="ic:baseline-search"/>
+            <Icon name="mingcute:search-2-fill" href="https://icones.js.org/collection/mingcute?s=sear&icon=mingcute:search-2-fill"/>
         </div>
 
         <div class="logo-nav-container">
@@ -17,9 +17,8 @@
         </div>
 
         <div class="icons">
-            <Icon name="ic:baseline-account-circle"/>
-            <Icon name="ic:sharp-shopping-cart"/>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <Icon name="mingcute:user-4-fill"/>
+            <Icon name="mingcute:shopping-cart-2-fill"/>
         </div>
     </header>
 </template>
@@ -28,8 +27,7 @@ export default {
     
 }
 </script>
-<style>
-
+<style scoped>
 header {
     background-color: var(--color-background);
     width: 100%;
@@ -68,6 +66,7 @@ header.shrink-more {
     flex-direction: column;
     gap: 10px;
     font-size: 24px;
+    font-weight: 400;
 }
 
 .profile-pic-mobile {
@@ -86,7 +85,6 @@ header.shrink-more {
     transform: scale(0.8);
 }
 
-
 .navigation {
     display: flex;
     gap: 20px;
@@ -100,7 +98,6 @@ header.shrink-more {
 
 .iconify {
     font-size: 1.5rem;
-    text-decoration: none;
     color: var(--color-morado);
     transition: transform 0.2s ease, color 0.2s ease;
 }
@@ -109,4 +106,6 @@ header.shrink-more {
     transform: scale(1.05);
     color: var(--color-morado-hover);
 }
+
+
 </style>

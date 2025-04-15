@@ -11,7 +11,7 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 .advertisement-bar p {
     background-color: var(--color-morado);
     height: 32px;
