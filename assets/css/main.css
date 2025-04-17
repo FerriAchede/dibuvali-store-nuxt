@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-/* General */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 /* Colores globales */
 :root {
@@ -33,22 +27,22 @@ a {
 }
 
 /* Efectos de hover */
-.navigation a:hover,.left-icons a:hover, .footer-links a:hover, .pages li a:hover {
+.navigation a:hover, .left-icons a:hover, .footer-links a:hover, .pages li a:hover {
     transform: scale(1.02);
     color: var(--color-morado-hover);
 }
 
 /* Efecto aparición */
-.hidden {
+/* .hidden {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
+} */
+/* 
 .show {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 /* Media Queries */
 @media (min-width: 1200px) { /* A partir de xl */
