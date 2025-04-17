@@ -2,9 +2,9 @@
     <div class="advertisement-bar" id="ad-bar-top">
         <p v-if="showAnnouncement">New tote bag!</p>
         <div v-else class="icons">
-            <Icon name="mingcute:star-2-fill" />
             <Icon name="mingcute:star-fill" />
-            <Icon name="mingcute:star-2-fill" />
+            <Icon name="mingcute:bling-fill" />
+            <Icon name="mingcute:star-fill" />
         </div>
     </div>
 </template>
