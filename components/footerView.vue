@@ -46,14 +46,11 @@ footer h4{
     margin: 20px 0px 20px;
 }
 
-footer .icons {
-    display: flex;
-    justify-content: space-evenly;
-}
 
 footer .icons {
-    width: 32px;
-    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
