@@ -35,6 +35,7 @@ footer{
 footer h4{
     color: var(--color-morado);
     font-weight: 500;
+    font-size: 1.3rem;
 }
 
 .footer-links {
@@ -53,6 +54,7 @@ footer .icons {
 footer .icons {
     width: 32px;
     height: 24px;
+    gap: 20px;
 }
 
 .iconify {
