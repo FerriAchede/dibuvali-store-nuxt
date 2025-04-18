@@ -1,11 +1,11 @@
 <template>
-    <header class="hidden md:flex header-desktop">
+    <header :class="['hidden md:flex header-desktop', { shrink: isShrunk, 'shrink-more': isShrunkMore }]">
         <div class="left-icons">
             <Icon name="mingcute:search-2-fill" />
         </div>
 
         <div class="logo-nav-container">
-            <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic">
+            <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic" :class="{ shrink: isShrunk }">
             <nav class="navigation">
                 <a href="./index.html">Inicio</a>
                 <a href="./new/index.html">Nuevo</a>
@@ -22,23 +22,25 @@
         </div>
     </header>
 
-    <header class="md:hidden h-auto p-6">
-        <div class="flex justify-between items-center">
-            <button @click="showMenu = !showMenu" aria-label="Toggle navigation">
+    <header
+        :class="['mobile-header md:hidden header-mobile h-auto p-6', { shrink: isShrunk, 'shrink-more': isShrunkMore }]">
+        <div class="flex justify-between items-center h-full">
+            <button @click="showMenu = !showMenu" aria-label="Toggle navigation" class="flex items-center">
                 <Icon name="mingcute:align-justify-fill" class="open-nav-icon" />
             </button>
 
-            <div class="mx-6">
+            <div class="mx-6 flex items-center">
                 <NuxtLink to="/">
-                    <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic-mobile" />
+                    <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic-mobile"
+                        :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }" />
                 </NuxtLink>
             </div>
 
-            <div class="">
-                <NuxtLink to="/carrito">
+            <div class="flex items-center gap-2">
+                <NuxtLink to="/" class="flex items-center">
                     <Icon name="mingcute:shopping-cart-2-fill" />
                 </NuxtLink>
-                <NuxtLink to="/busqueda">
+                <NuxtLink to="/" class="flex items-center">
                     <Icon name="mingcute:search-2-fill" />
                 </NuxtLink>
             </div>
@@ -47,7 +49,8 @@
 
     </header>
     <Transition name="slide-down">
-        <nav v-if="showMenu" class="navigation flex flex-col gap-3 py-4 pt-0 pb-3 px-7">
+        <nav v-if="showMenu" class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
+            :class="{ 'shrink-more': isShrunkMore }">
             <NuxtLink to="/" class="nav-link">Inicio</NuxtLink>
             <NuxtLink to="/new" class="nav-link">Nuevo</NuxtLink>
             <NuxtLink to="/products" class="nav-link">Productos</NuxtLink>
@@ -59,8 +62,24 @@
 
 </template>
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+const showMenu = ref(false);
+const isShrunk = ref(false);
+const isShrunkMore = ref(false);
 
-const showMenu = ref(false)
+function handleScroll() {
+    const scrollY = window.scrollY;
+    isShrunk.value = scrollY > 50;
+    isShrunkMore.value = scrollY > 100;
+}
+
+onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener("scroll", handleScroll);
+});
 
 </script>
 <style scoped>
@@ -78,18 +97,17 @@ const showMenu = ref(false)
     transition: height 0.4s ease;
 }
 
-header.shrink {
+.header-desktop.shrink {
     height: 135px;
 }
 
-header.shrink-more {
+.header-desktop.shrink-more {
     height: 115px;
 }
 
 .header-mobile.shrink-more {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    transition: padding 0.4s ease;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .left-icons {
@@ -147,19 +165,30 @@ header.shrink-more {
     width: 32px;
 }
 
-#mobileNavbar {
+.mobile-header {
     position: sticky;
-    top: 9%;
+    top: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    transition: padding 0.4s ease;
+}
+
+.mobile-navbar {
+    position: sticky;
+    top: 12%;
     width: 100%;
     background-color: var(--color-background-content);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-    z-index: 3;
+    z-index: 4;
+    transition: all 0.3s ease;
+
 }
 
 #mobileNavbar.shrink-more {
-    top: 5%;
+    top: 9%;
 }
-
 
 .slide-down-enter-active,
 .slide-down-leave-active {
