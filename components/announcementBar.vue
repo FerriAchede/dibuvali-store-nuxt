@@ -11,11 +11,11 @@
 
 <script setup>
 defineProps({
-  showAnnouncement: {
-    type: Boolean,
-    default: true
-  }
-})
+    showAnnouncement: {
+        type: Boolean,
+        default: true,
+    },
+});
 </script>
 
 <style scoped>

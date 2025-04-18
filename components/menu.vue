@@ -1,11 +1,19 @@
 <template>
-    <header :class="['hidden md:flex header-desktop', { shrink: isShrunk, 'shrink-more': isShrunkMore }]">
+    <header
+        :class="[
+            'hidden md:flex header-desktop',
+            { shrink: isShrunk, 'shrink-more': isShrunkMore },
+        ]">
         <div class="left-icons">
             <Icon name="mingcute:search-2-fill" />
         </div>
 
         <div class="logo-nav-container">
-            <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic" :class="{ shrink: isShrunk }">
+            <img
+                src="/logotxt.webp"
+                alt="Dibu Vali"
+                class="profile-pic"
+                :class="{ shrink: isShrunk }" />
             <nav class="navigation">
                 <a href="./index.html">Inicio</a>
                 <a href="./new/index.html">Nuevo</a>
@@ -23,16 +31,30 @@
     </header>
 
     <header
-        :class="['mobile-header md:hidden header-mobile h-auto p-6', { shrink: isShrunk, 'shrink-more': isShrunkMore }]">
+        :class="[
+            'mobile-header md:hidden header-mobile h-auto p-6',
+            { shrink: isShrunk, 'shrink-more': isShrunkMore },
+        ]">
         <div class="flex justify-between items-center h-full">
-            <button @click="showMenu = !showMenu" aria-label="Toggle navigation" class="flex items-center">
-                <Icon name="mingcute:align-justify-fill" class="open-nav-icon" />
+            <button
+                @click="showMenu = !showMenu"
+                aria-label="Toggle navigation"
+                class="flex items-center">
+                <Icon
+                    name="mingcute:align-justify-fill"
+                    class="open-nav-icon" />
             </button>
 
             <div class="mx-6 flex items-center">
                 <NuxtLink to="/">
-                    <img src="/logotxt.webp" alt="Dibu Vali" class="profile-pic-mobile"
-                        :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }" />
+                    <img
+                        src="/logotxt.webp"
+                        alt="Dibu Vali"
+                        class="profile-pic-mobile"
+                        :class="{
+                            shrink: isShrunk,
+                            'shrink-more': isShrunkMore,
+                        }" />
                 </NuxtLink>
             </div>
 
@@ -45,11 +67,11 @@
                 </NuxtLink>
             </div>
         </div>
-
-
     </header>
     <Transition name="slide-down">
-        <nav v-if="showMenu" class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
+        <nav
+            v-if="showMenu"
+            class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
             :class="{ 'shrink-more': isShrunkMore }">
             <NuxtLink to="/" class="nav-link">Inicio</NuxtLink>
             <NuxtLink to="/new" class="nav-link">Nuevo</NuxtLink>
@@ -59,7 +81,6 @@
             <NuxtLink to="/contacto" class="nav-link">Contacto</NuxtLink>
         </nav>
     </Transition>
-
 </template>
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
@@ -80,7 +101,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener("scroll", handleScroll);
 });
-
 </script>
 <style scoped>
 .header-desktop {
@@ -183,7 +203,6 @@ onBeforeUnmount(() => {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     z-index: 4;
     transition: all 0.3s ease;
-
 }
 
 #mobileNavbar.shrink-more {

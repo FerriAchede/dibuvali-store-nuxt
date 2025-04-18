@@ -1,15 +1,11 @@
 <template>
-    <AnnouncementBar/>
-    <Menu/>
-    
-    <slot/>
-    <FooterView/>
+    <AnnouncementBar />
+    <Menu />
+
+    <slot />
+    <FooterView />
 </template>
 <script>
-export default {
-
-}
+export default {};
 </script>
-<style lang="">
-
-</style>
+<style lang=""></style>
