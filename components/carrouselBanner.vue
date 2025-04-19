@@ -36,16 +36,13 @@ onMounted(() => {
                 </transition-group>
             </div>
 
-            <div class="banner-text">
+            <div
+                class="banner-text flex flex-col items-center left-1/2 transform -translate-x-1/2 sm:left-[10%] sm:-translate-x-0 sm:items-start sm:text-left w-full">
                 <h3
                     class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold">
-                    Explore all the Merch!
+                    Explora todo el Merch!
                 </h3>
-                <a
-                    href="#"
-                    class="explore-btn text-sm sm:text-base px-3 py-1 sm:px-5 sm:py-2">
-                    Explore
-                </a>
+                <a href="#" class="explore-btn"> Explorar </a>
             </div>
         </div>
     </section>
@@ -61,13 +58,19 @@ onMounted(() => {
 
 .banner-text {
     position: absolute;
-    left: 10%;
     top: 50%;
     transform: translateY(-50%);
-    text-align: left;
     color: var(--color-background);
     text-shadow: 1px 1px 2px var(--color-morado);
     z-index: 2;
+}
+
+@media (min-width: 640px) {
+    .banner-text {
+        left: 10%;
+        text-align: left;
+        align-items: flex-start;
+    }
 }
 
 .explore-btn {
