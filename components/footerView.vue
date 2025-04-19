@@ -1,21 +1,26 @@
 <template>
     <footer>
         <h4>ENLACES RÁPIDOS</h4>
-        <div class="footer-links">
+        <div
+            class="footer-links grid grid-cols-2 gap-y-3 gap-x-8 place-items-center md:flex md:justify-between md:gap-9">
             <a href="../index.html">Inicio</a>
             <a href="#">Contacto</a>
             <a href="#">Términos de servicio</a>
             <a href="#">Política de privacidad</a>
             <a href="#">Envíos</a>
+            <a href="#">Ayuda</a>
         </div>
-        <div class="icons">
-            <a href="https://www.instagram.com/dibu_vali/"
+        <div
+            class="icons flex justify-center md:justify-start items-center gap-6">
+            <a
+                href="https://www.instagram.com/dibu_vali/"
+                aria-label="Instagram"
                 ><Icon name="mingcute:instagram-fill"
             /></a>
-            <a href="https://www.tiktok.com/@dibu_vali"
+            <a href="https://www.tiktok.com/@dibu_vali" aria-label="TikTok"
                 ><Icon name="mingcute:tiktok-fill"
             /></a>
-            <a href="https://www.youtube.com/@Dibu_Vali"
+            <a href="https://www.youtube.com/@Dibu_Vali" aria-label="YouTube"
                 ><Icon name="mingcute:youtube-fill"
             /></a>
         </div>
@@ -28,6 +33,7 @@ export default {};
 footer {
     background-color: var(--color-footer);
     padding: 30px;
+    padding-bottom: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -43,23 +49,15 @@ footer h4 {
 }
 
 .footer-links {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px 0px 20px;
+    margin: 20px 0;
 }
 
 footer .icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    color: var(--color-morado);
+    font-size: 1.5rem;
 }
 
 .iconify {
-    font-size: 1.5rem;
-    color: var(--color-morado);
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
