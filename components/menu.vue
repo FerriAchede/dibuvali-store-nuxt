@@ -72,7 +72,7 @@
         <nav
             v-if="showMenu"
             class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
-            :class="{ 'shrink-more': isShrunkMore }">
+            :class="{ shrink: isShrunk,'shrink-more': isShrunkMore }">
             <NuxtLink to="/" class="nav-link">Inicio</NuxtLink>
             <NuxtLink to="/new" class="nav-link">Nuevo</NuxtLink>
             <NuxtLink to="/products" class="nav-link">Productos</NuxtLink>
@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
 
 .mobile-navbar {
     position: sticky;
-    top: 12%;
+    top: 0;
     width: 100%;
     background-color: var(--color-background-content);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
@@ -205,8 +205,12 @@ onBeforeUnmount(() => {
     transition: all 0.3s ease;
 }
 
-#mobileNavbar.shrink-more {
-    top: 9%;
+.mobile-navbar.shrink {
+    top: 86px;
+}
+
+.mobile-navbar.shrink-more {
+    top: 65px;
 }
 
 .slide-down-enter-active,
