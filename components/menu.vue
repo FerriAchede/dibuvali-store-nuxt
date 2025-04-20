@@ -15,12 +15,12 @@
                 class="profile-pic"
                 :class="{ shrink: isShrunk }" />
             <nav class="navigation">
-                <a href="./index.html">Inicio</a>
-                <a href="./new/index.html">Nuevo</a>
-                <a href="./products/index.html">Productos</a>
-                <!-- <a href="#">Collections</a> -->
-                <a href="#about-me">Sobre mí</a>
-                <!-- <a href="#">Contact</a> -->
+                <NuxtLink :to="{ name: 'index' }" class="nav-link" active-class="active">Inicio</NuxtLink>
+                <NuxtLink :to="{ name: 'products-new' }" class="nav-link" active-class="active">Nuevo</NuxtLink>
+                <NuxtLink :to="{ name: 'products' }" class="nav-link" active-class="active">Productos</NuxtLink>
+                <NuxtLink :to="{ name: 'products-collection', params: { collection:'asd' } }" class="nav-link" active-class="active">Colecciones</NuxtLink>
+                <NuxtLink :to="{ name: 'about-me' }" class="nav-link" active-class="active">Sobre mí</NuxtLink>
+                <NuxtLink :to="{ name: 'contact' }" class="nav-link" active-class="active">Contacto</NuxtLink>
             </nav>
         </div>
 
@@ -72,16 +72,17 @@
         <nav
             v-if="showMenu"
             class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
-            :class="{ shrink: isShrunk,'shrink-more': isShrunkMore }">
-            <NuxtLink to="/" class="nav-link">Inicio</NuxtLink>
-            <NuxtLink to="/new" class="nav-link">Nuevo</NuxtLink>
-            <NuxtLink to="/products" class="nav-link">Productos</NuxtLink>
-            <NuxtLink to="/collections" class="nav-link">Colecciones</NuxtLink>
-            <NuxtLink to="/#about-me" class="nav-link">Sobre mí</NuxtLink>
-            <NuxtLink to="/contacto" class="nav-link">Contacto</NuxtLink>
+            :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }">
+            <NuxtLink :to="{ name: 'index' }" class="nav-link" active-class="active">Inicio</NuxtLink>
+            <NuxtLink :to="{ name: 'products-new' }" class="nav-link" active-class="active">Nuevo</NuxtLink>
+            <NuxtLink :to="{ name: 'products' }" class="nav-link" active-class="active">Productos</NuxtLink>
+            <NuxtLink :to="{ name: 'products-collection', params: { collection: 'asd' } }" class="nav-link" active-class="active">Colecciones</NuxtLink>
+            <NuxtLink :to="{ name: 'about-me' }" class="nav-link" active-class="active">Sobre mí</NuxtLink>
+            <NuxtLink :to="{ name: 'contact' }" class="nav-link" active-class="active">Contacto</NuxtLink>
         </nav>
     </Transition>
 </template>
+
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 const showMenu = ref(false);
@@ -103,6 +104,10 @@ onBeforeUnmount(() => {
 });
 </script>
 <style scoped>
+.active {
+    font-weight: 500;
+}
+
 .header-desktop {
     background-color: var(--color-background);
     width: 100%;
