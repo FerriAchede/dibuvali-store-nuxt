@@ -1,15 +1,29 @@
 <script setup>
+const route = useRoute();
+const router = useRouter();
+
+const currentPage = ref(parseInt(route.query.page) || 1);
+
+const config = useRuntimeConfig();
+const baseUrl = config.public.apiBaseUrl;
+
 const { data: products, status } = await useFetch(
-    "http://localhost:8000/api/products",
-    {
-        lazy: true,
-    }
+  () => `${baseUrl}/products?page=${currentPage.value}`,
+  {
+    watch: [currentPage],
+    lazy: true,
+  }
 );
+
+const changePage = (page) => {
+  currentPage.value = page;
+  router.push({ query: { ...route.query, page } });
+};
 </script>
 
 <template>
-    <section v-if="products?.data" class="products text-center py-10">
-        <div class="container mx-auto px-4">
+    <section class="products text-center py-10">
+        <div v-if="products?.data" class="container mx-auto px-4">
             <h2>Products</h2>
 
             <div
@@ -24,11 +38,16 @@ const { data: products, status } = await useFetch(
                     :product="product" />
             </div>
         </div>
+        <div v-else>
+            <p>No products available.</p>
+        </div>
+        <Pagination
+            :meta="products.meta"
+            :currentPage="currentPage"
+            @page-changed="changePage" />
     </section>
 
-    <div v-else>
-        <p>No products available.</p>
-    </div>
+    
 </template>
 
 <style scoped>
@@ -44,8 +63,7 @@ const { data: products, status } = await useFetch(
     background-color: var(--color-background-content);
     max-width: 1400px;
     margin: 0 auto;
-    box-shadow: -20px 0 15px -5px #ffeae9b3,
-                20px 0 15px -5px #ffeae9b3;
+    box-shadow: -20px 0 15px -5px #ffeae9b3, 20px 0 15px -5px #ffeae9b3;
 }
 
 .products h2 {
