@@ -13,6 +13,13 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    apiSecretKey: '',
+    public: {
+      apiBaseUrl: 'http://192.168.1.35:8000/api',
+    }
+  },
+
   vite: {
     plugins: [
       tailwindcss(),
