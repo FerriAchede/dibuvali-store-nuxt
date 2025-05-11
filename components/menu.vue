@@ -73,12 +73,12 @@
             v-if="showMenu"
             class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
             :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }">
-            <NuxtLink :to="{ name: 'index' }" class="nav-link" active-class="active">Inicio</NuxtLink>
-            <NuxtLink :to="{ name: 'products-new' }" class="nav-link" active-class="active">Nuevo</NuxtLink>
-            <NuxtLink :to="{ name: 'products' }" class="nav-link" active-class="active">Productos</NuxtLink>
-            <NuxtLink :to="{ name: 'products-collection', params: { collection: 'asd' } }" class="nav-link" active-class="active">Colecciones</NuxtLink>
-            <NuxtLink :to="{ name: 'about-me' }" class="nav-link" active-class="active">Sobre mí</NuxtLink>
-            <NuxtLink :to="{ name: 'contact' }" class="nav-link" active-class="active">Contacto</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'index' }" class="nav-link" active-class="active">Inicio</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'products-new' }" class="nav-link" active-class="active">Nuevo</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'products' }" class="nav-link" active-class="active">Productos</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'products-collection', params: { collection: 'asd' } }" class="nav-link" active-class="active">Colecciones</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'about-me' }" class="nav-link" active-class="active">Sobre mí</NuxtLink>
+            <NuxtLink @click="showMenu = false" :to="{ name: 'contact' }" class="nav-link" active-class="active">Contacto</NuxtLink>
         </nav>
     </Transition>
 </template>
