@@ -24,7 +24,7 @@ const changePage = (page) => {
 <template>
     <section class="products text-center py-10">
         <div v-if="products?.data" class="container mx-auto px-4">
-            <h2>Products</h2>
+            <h2>Productos</h2>
 
             <div
                 class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-0">
@@ -33,7 +33,7 @@ const changePage = (page) => {
                 </div>
                 <ProductCard
                     v-else
-                    v-for="product in products.data"
+                    v-for="product in products?.data || []"
                     :key="product.id"
                     :product="product" />
             </div>
@@ -42,6 +42,7 @@ const changePage = (page) => {
             <p>No products available.</p>
         </div>
         <Pagination
+            v-if="products?.meta"
             :meta="products.meta"
             :currentPage="currentPage"
             @page-changed="changePage" />
