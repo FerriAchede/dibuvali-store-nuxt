@@ -1,6 +1,63 @@
 <script setup>
 import { useMessageStore } from "~/stores/messagesStore";
+
 const messageStore = useMessageStore();
+
+const getIconName = (type) => {
+    switch (type) {
+        case "add":
+            return "mingcute:shopping-cart-2-fill";
+        case "delete":
+        case "deleteAll":
+            return "mingcute:delete-fill";
+        case "update":
+            return "mingcute:refresh-2-fill";
+        case "error":
+            return "mingcute:close-circle-fill";
+        case "info":
+            return "mingcute:information-fill";
+        default:
+            return "mingcute:confused-fill";
+    }
+};
+
+const getIconColor = (type) => {
+    switch (type) {
+        case "add":
+            return "#823BFB";
+        case "delete":
+            return "#FF6A9B";
+        case "deleteAll":
+            return "#FF6A9B";
+        case "update":
+            return "#2AFFF7";
+        case "error":
+            return "#F44336";
+        case "info":
+            return "#02CACD";
+        default:
+            return "#823BFB";
+    }
+};
+
+const getTitle = (type) => {
+    switch (type) {
+        case "add":
+            return "¡Añadido al carrito!";
+        case "delete":
+            return "¡Producto eliminado!";
+        case "deleteAll":
+            return "¡Carrito vaciado!";
+        case "update":
+            return "¡Carrito actualizado!";
+        case "error":
+            return "Error";
+        case "info":
+            return "Información";
+        default:
+            return "Aviso";
+    }
+};
 </script>
 
 <template>
@@ -14,53 +71,37 @@ const messageStore = useMessageStore();
                     <div class="card-icon">
                         <div class="icon-cart-box">
                             <Icon
-                                :name="
-                                    msg.type === 'success'
-                                        ? 'mingcute:shopping-cart-2-fill'
-                                        : 'mingcute:confused-fill'
-                                "
+                                :name="getIconName(msg.type)"
                                 class="icon"
-                                :style="{
-                                    color:
-                                        msg.type === 'success'
-                                            ? '#823BFB'
-                                            : '#FF6A9B',
-                                }" />
+                                :style="{ color: getIconColor(msg.type) }"
+                            />
                         </div>
                     </div>
 
                     <div class="card-content">
                         <div class="card-title-wrapper">
-                            <span class="card-title">{{
-                                msg.type === "success"
-                                    ? "Added to cart!"
-                                    : "Notice"
-                            }}</span>
-                            <span
-                                class="card-action"
-                                @click="messageStore.removeMessage(msg.id)">
+                            <span class="card-title">{{ getTitle(msg.type) }}</span>
+                            <span class="card-action" @click="messageStore.removeMessage(msg.id)">
                                 <Icon name="mingcute:close-line" />
                             </span>
                         </div>
+
                         <div class="product-name">{{ msg.text }}</div>
-                        <div
-                            class="product-price"
-                            v-if="msg.type === 'success'">
+
+                        <div class="product-price" v-if="msg.type === 'add' || msg.type === 'update'">
                             <span
                                 v-if="
                                     msg.data?.previousQuantity &&
-                                    msg.data?.previousQuantity !=
-                                        msg.data?.newQuantity
-                                ">
+                                    msg.data?.previousQuantity !== msg.data?.newQuantity
+                                "
+                            >
                                 <strong>{{ msg.data.previousQuantity }}</strong>
                                 →
-                                <strong>{{ msg.data?.newQuantity }}</strong>
+                                <strong>{{ msg.data.newQuantity }}</strong>
                             </span>
-
-                            <span
-                                >{{ msg.data?.price }}
-                                {{ msg.data?.currency_code }}</span
-                            >
+                            <span>
+                                {{ msg.data?.price }} {{ msg.data?.currency_code }}
+                            </span>
                         </div>
                     </div>
                 </div>

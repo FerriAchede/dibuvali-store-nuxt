@@ -10,7 +10,7 @@ export const useMessageStore = defineStore("message", {
     },
 
     actions: {
-        addMessage({ text, type = "info", data, timeout = 10000 }) {
+        addMessage({ text, type = "info", data, timeout = 5000 }) {
             const id = Date.now() + Math.random();
             this.messages.push({ id, text, data, type });
             if (timeout > 0) {

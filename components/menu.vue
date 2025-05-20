@@ -59,7 +59,9 @@
 
         <div class="icons">
             <Icon name="mingcute:user-4-fill" />
-            <Icon name="mingcute:shopping-cart-2-fill" />
+            <button @click="openCart">
+                <Icon name="mingcute:shopping-cart-2-fill" />
+            </button>
         </div>
     </header>
 
@@ -78,7 +80,7 @@
                     class="open-nav-icon" />
             </button>
 
-            <div class="mx-6 flex items-center">
+            <div class="mx-2 flex items-center">
                 <NuxtLink to="/">
                     <img
                         src="/logotxt.webp"
@@ -92,9 +94,9 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <NuxtLink to="/" class="flex items-center">
+                <button @click="openCart" class="flex items-center">
                     <Icon name="mingcute:shopping-cart-2-fill" />
-                </NuxtLink>
+                </button>
                 <NuxtLink to="/" class="flex items-center">
                     <Icon name="mingcute:search-2-fill" />
                 </NuxtLink>
@@ -153,10 +155,14 @@
             >
         </nav>
     </Transition>
+    <CartView />
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useCartStore } from "@/stores/cartStore";
+
+const cart = useCartStore();
 const showMenu = ref(false);
 const isShrunk = ref(false);
 const isShrunkMore = ref(false);
@@ -174,6 +180,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener("scroll", handleScroll);
 });
+
+const openCart = () => {
+    cart.toggleCart();
+};
 </script>
 <style scoped>
 .active {

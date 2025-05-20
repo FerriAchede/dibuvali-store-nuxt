@@ -18,6 +18,23 @@ const thumbsSwiper = ref(null);
 function setThumbsSwiper(swiper) {
     thumbsSwiper.value = swiper;
 }
+
+const cart = useCartStore();
+
+const addToCart = () => {
+    cart.addItem({
+        id: product.value.id,
+        title: product.value.title,
+        slug: product.value.slug,
+        description: product.value.description,
+        price: parseFloat(product.value.price),
+        currency_code: product.value.currency_code,
+        image: product.value.image,
+        quantity: quantity.value,
+        stock: product.value.stock,
+        variant_id: product.value.variant_id,
+    });
+};
 </script>
 
 <template>
@@ -27,7 +44,7 @@ function setThumbsSwiper(swiper) {
                 <Swiper
                     :modules="[Thumbs, Navigation]"
                     :thumbs="{ swiper: thumbsSwiper }"
-                    class="rounded-xl mb-6 ">
+                    class="rounded-xl mb-6">
                     <SwiperSlide>
                         <img
                             :src="product.image"
@@ -62,19 +79,27 @@ function setThumbsSwiper(swiper) {
                 <h1
                     class="text-3xl font-semibold mb-4 text-[var(--color-morado)]">
                     {{ product.title }}
-                    
                 </h1>
                 <div class="flex items-center mb-6">
                     <div
                         :class="{
                             'text-2xl font-semibold text-[var(--color-morado)] font-manrope leading-9 pr-5': true,
-                            'sm:border-r border-[var(--color-morado)]': product.tags && product.tags.length > 0
+                            'sm:border-r border-[var(--color-morado)]':
+                                product.tags && product.tags.length > 0,
                         }">
                         {{ product.price }} {{ product.currency_code }}
                     </div>
-                    <div v-if="product.tags && product.tags.length > 0" class="ml-4">
-                        <div class="flex flex-wrap gap-2 mt-1 items-center justify-center">
-                            <Icon :name="product.tags.length > 1 ? 'mingcute:tag-2-line' : 'mingcute:tag-line'" />
+                    <div
+                        v-if="product.tags && product.tags.length > 0"
+                        class="ml-4">
+                        <div
+                            class="flex flex-wrap gap-2 mt-1 items-center justify-center">
+                            <Icon
+                                :name="
+                                    product.tags.length > 1
+                                        ? 'mingcute:tag-2-line'
+                                        : 'mingcute:tag-line'
+                                " />
                             <span
                                 v-for="(tag, index) in product.tags"
                                 :key="index"
@@ -84,7 +109,6 @@ function setThumbsSwiper(swiper) {
                         </div>
                     </div>
                 </div>
-
 
                 <div
                     v-html="product.description"
@@ -100,7 +124,6 @@ function setThumbsSwiper(swiper) {
                     <span class="font-medium">{{ product.brand }}</span>
                 </div>
 
-
                 <div
                     v-if="product.stock > 0"
                     class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
@@ -108,7 +131,7 @@ function setThumbsSwiper(swiper) {
                         class="flex items-center justify-center w-full sm:col-span-1">
                         <button
                             @click="quantity = Math.max(1, quantity - 1)"
-                            class="group py-4 px-6 border border-gray-400 rounded-l-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-[var(--color-background)] hover:bg-[var(--color-background)]">
+                            class="group py-4 px-5 border border-gray-400 rounded-l-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-[var(--color-background)] hover:bg-[var(--color-background)]">
                             <Icon name="mingcute:minimize-fill" />
                         </button>
                         <input
@@ -116,16 +139,28 @@ function setThumbsSwiper(swiper) {
                             type="text"
                             min="1"
                             :max="product.stock"
-                            class="font-semibold text-gray-900 text-lg py-[14px] px-6 w-full lg:max-w-[89px] border-y border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-[var(--color-background)] focus-within:bg-gray-50 outline-0"
+                            class="font-semibold text-gray-900 text-lg py-[14px] w-full lg:max-w-[89px] border-y border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-[var(--color-background)] focus-within:bg-gray-50 outline-0"
                             placeholder="1" />
                         <button
-                            @click="quantity = Math.min(product.stock, quantity + 1)"
-                            class="group py-4 px-6 border border-gray-400 rounded-r-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-[var(--color-background)] hover:bg-[var(--color-background)]">
+                            @click="
+                                quantity = Math.min(product.stock, quantity + 1)
+                            "
+                            class="group py-4 px-5 border border-gray-400 rounded-r-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-[var(--color-background)] hover:bg-[var(--color-background)]">
                             <Icon name="mingcute:add-fill" hight="22" />
                         </button>
                     </div>
                     <button
-                        class="group py-4 px-5 rounded-full bg-[var(--color-morado)] text-[var(--color-background)] font-semibold text-lg w-full sm:col-span-2 flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-[#8850f8] hover:shadow-indigo-200">
+                        @click="
+                            quantity > 0 &&
+                                quantity <= product.stock &&
+                                addToCart()
+                        "
+                        :class="{
+                            'group py-4 px-5 rounded-full bg-[var(--color-morado)] text-[var(--color-background)] font-semibold text-lg w-full sm:col-span-2 flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-[#8850f8] hover:shadow-indigo-200': true,
+                            'cursor-not-allowed opacity-50':
+                                quantity <= 0 || quantity > product.stock || cart.loading,
+                        }"
+                        :disabled="quantity <= 0 || quantity > product.stock || cart.loading">
                         <Icon name="mingcute:basket-line" class="mr-1" />
                         Añadir al carrito
                     </button>
@@ -141,14 +176,27 @@ function setThumbsSwiper(swiper) {
                 </div>
             </div>
         </div>
+        <div
+            v-if="product"
+            class="flex justify-center items-center py-10"
+            style="background-color: var(--color-background-content)">
+            <p class="text-gray-600">
+                ¿No encuentras lo que buscas?
+                <NuxtLink
+                    to="/contact"
+                    class="text-[var(--color-morado)] font-semibold"
+                    >Contáctanos</NuxtLink
+                >
+            </p>
+        </div>
     </div>
-
     <div
         v-else
         class="text-center py-20 text-gray-600"
         style="background-color: var(--color-background-content)">
         <p>Cargando producto...</p>
     </div>
+    <MessageList />
 </template>
 
 <style scoped>
