@@ -9,51 +9,17 @@
         </div>
 
         <div class="logo-nav-container">
+            <NuxtLink to="/">
+
             <img
                 src="/logotxt.webp"
                 alt="Dibu Vali"
                 class="profile-pic"
                 :class="{ shrink: isShrunk }" />
+            </NuxtLink>
+
             <nav class="navigation">
-                <NuxtLink
-                    :to="{ name: 'index' }"
-                    class="nav-link"
-                    active-class="active"
-                    >Inicio</NuxtLink
-                >
-                <NuxtLink
-                    :to="{ name: 'products-new' }"
-                    class="nav-link"
-                    active-class="active"
-                    >Nuevo</NuxtLink
-                >
-                <NuxtLink
-                    :to="{ name: 'products' }"
-                    class="nav-link"
-                    active-class="active"
-                    >Productos</NuxtLink
-                >
-                <NuxtLink
-                    :to="{
-                        name: 'products-collection',
-                        params: { collection: 'asd' },
-                    }"
-                    class="nav-link"
-                    active-class="active"
-                    >Colecciones</NuxtLink
-                >
-                <NuxtLink
-                    :to="{ name: 'about-me' }"
-                    class="nav-link"
-                    active-class="active"
-                    >Sobre mí</NuxtLink
-                >
-                <NuxtLink
-                    :to="{ name: 'contact' }"
-                    class="nav-link"
-                    active-class="active"
-                    >Contacto</NuxtLink
-                >
+                <NavigationLinks />
             </nav>
         </div>
 
@@ -108,51 +74,7 @@
             v-if="showMenu"
             class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
             :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }">
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{ name: 'index' }"
-                class="nav-link"
-                active-class="active"
-                >Inicio</NuxtLink
-            >
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{ name: 'products-new' }"
-                class="nav-link"
-                active-class="active"
-                >Nuevo</NuxtLink
-            >
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{ name: 'products' }"
-                class="nav-link"
-                active-class="active"
-                >Productos</NuxtLink
-            >
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{
-                    name: 'products-collection',
-                    params: { collection: 'asd' },
-                }"
-                class="nav-link"
-                active-class="active"
-                >Colecciones</NuxtLink
-            >
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{ name: 'about-me' }"
-                class="nav-link"
-                active-class="active"
-                >Sobre mí</NuxtLink
-            >
-            <NuxtLink
-                @click="showMenu = false"
-                :to="{ name: 'contact' }"
-                class="nav-link"
-                active-class="active"
-                >Contacto</NuxtLink
-            >
+            <NavigationLinks @link-clicked="showMenu = false"/>
         </nav>
     </Transition>
     <CartView />
@@ -227,6 +149,7 @@ const openCart = () => {
     gap: 10px;
     font-size: 24px;
     font-weight: 400;
+    align-items: center;
 }
 
 .profile-pic-mobile {
