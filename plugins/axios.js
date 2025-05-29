@@ -1,9 +1,14 @@
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
     const config = useRuntimeConfig();
-    const baseUrl = config.public.apiBaseUrl;
+    const baseUrl = config.public.baseUrl;
+    const baseUrlApi = config.public.apiBaseUrl;
 
+    // await $fetch(`${baseUrl}/csrf-token`, {
+    //   credentials: 'include',
+    // });
+  
     const axiosInstance = $fetch.create({
-      baseURL: baseUrl,
+      baseURL: `${baseUrlApi}`,
       credentials: 'include',
     });
   

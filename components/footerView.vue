@@ -3,12 +3,12 @@
         <h4>ENLACES RÁPIDOS</h4>
         <div
             class="footer-links grid grid-cols-2 gap-y-3 gap-x-8 place-items-center md:flex md:justify-between md:gap-9">
-            <a href="../index.html">Inicio</a>
-            <a href="#">Contacto</a>
-            <a href="#">Términos de servicio</a>
-            <a href="#">Política de privacidad</a>
-            <a href="#">Envíos</a>
-            <a href="#">Ayuda</a>
+            <NuxtLink to="/">Inicio</NuxtLink>
+            <NuxtLink to="/contact">Contacto</NuxtLink>
+            <NuxtLink to="/terms">Términos de servicio</NuxtLink>
+            <NuxtLink to="/privacy">Política de privacidad</NuxtLink>
+            <NuxtLink to="/shipping">Envíos</NuxtLink>
+            <NuxtLink to="/help">Ayuda</NuxtLink>
         </div>
         <div
             class="icons flex justify-center md:justify-start items-center gap-6">

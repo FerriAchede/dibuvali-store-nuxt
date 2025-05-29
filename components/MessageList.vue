@@ -61,7 +61,7 @@ const getTitle = (type) => {
 </script>
 
 <template>
-    <div class="fixed top-4 right-4 space-y-2 z-100 pointer-events-none">
+    <div class="fixed top-4 right-4 space-y-2 z-999 pointer-events-none">
         <transition-group name="message" tag="div">
             <div
                 v-for="msg in messageStore.allMessages"
