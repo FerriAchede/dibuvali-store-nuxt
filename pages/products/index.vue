@@ -1,4 +1,5 @@
 <script setup>
+import LoadingSpinner from '@/components/decoration/LoadingSpinner.vue';
 const route = useRoute();
 const router = useRouter();
 
@@ -23,33 +24,34 @@ const changePage = (page) => {
 
 <template>
     <section class="products text-center py-10">
-        <div v-if="products?.data" class="container mx-auto px-4">
-            <h2>Productos</h2>
-
-            <div
-                class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-0">
-                <div v-if="status === 'pending'" class="w-full text-center">
-                    <p>Loading... Icono de carga</p>
-                </div>
-                <ProductCard
-                    v-else
-                    v-for="product in products?.data || []"
-                    :key="product.id"
-                    :product="product" />
-            </div>
+      <div v-if="status === 'pending'" class="container mx-auto px-4">
+        <LoadingSpinner />
+      </div>
+  
+      <div v-else-if="status === 'success' && products?.data" class="container mx-auto px-4">
+        <h2>Productos</h2>
+  
+        <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-0">
+          <ProductCard
+            v-for="product in products.data"
+            :key="product.id"
+            :product="product"
+          />
         </div>
-        <div v-else>
-            <p>No products available.</p>
-        </div>
+  
         <Pagination
-            v-if="products?.meta"
-            :meta="products.meta"
-            :currentPage="currentPage"
-            @page-changed="changePage" />
+          v-if="products.meta"
+          :meta="products.meta"
+          :currentPage="currentPage"
+          @page-changed="changePage"
+        />
+      </div>
+  
+      <div v-else>
+        <p>No products available.</p>
+      </div>
     </section>
-
-    
-</template>
+  </template>
 
 <style scoped>
 .product-grid {

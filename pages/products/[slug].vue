@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/navigation";
 import StarDecoration from "~/components/decoration/StarDecoration.vue";
+import LoadingSpinner from "~/components/decoration/LoadingSpinner.vue";
 
 const route = useRoute();
 const config = useRuntimeConfig();
@@ -135,12 +136,16 @@ const addToCart = () => {
                             <Icon name="mingcute:minimize-fill" />
                         </button>
                         <input
+                            v-if="!cart.loading"
                             v-model="quantity"
                             type="text"
                             min="1"
                             :max="product.stock"
                             class="font-semibold text-gray-900 text-lg py-[14px] w-full lg:max-w-[89px] border-y border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-[var(--color-background)] focus-within:bg-gray-50 outline-0"
                             placeholder="1" />
+                        <LoadingSpinner
+                            v-else
+                            class="py-[8px] w-full lg:max-w-[89px] border-y border-gray-400 bg-transparent text-center outline-0" />
                         <button
                             @click="
                                 quantity = Math.min(product.stock, quantity + 1)
@@ -158,9 +163,15 @@ const addToCart = () => {
                         :class="{
                             'group py-4 px-5 rounded-full bg-[var(--color-morado)] text-[var(--color-background)] font-semibold text-lg w-full sm:col-span-2 flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-[#8850f8] hover:shadow-indigo-200': true,
                             'cursor-not-allowed opacity-50':
-                                quantity <= 0 || quantity > product.stock || cart.loading,
+                                quantity <= 0 ||
+                                quantity > product.stock ||
+                                cart.loading,
                         }"
-                        :disabled="quantity <= 0 || quantity > product.stock || cart.loading">
+                        :disabled="
+                            quantity <= 0 ||
+                            quantity > product.stock ||
+                            cart.loading
+                        ">
                         <Icon name="mingcute:basket-line" class="mr-1" />
                         Añadir al carrito
                     </button>
@@ -190,13 +201,9 @@ const addToCart = () => {
             </p>
         </div>
     </div>
-    <div
-        v-else
-        class="text-center py-20 text-gray-600"
-        style="background-color: var(--color-background-content)">
-        <p>Cargando producto...</p>
+    <div v-else style="background-color: var(--color-background-content)">
+        <LoadingSpinner />
     </div>
-    <MessageList />
 </template>
 
 <style scoped>
