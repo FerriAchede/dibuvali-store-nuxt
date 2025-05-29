@@ -13,6 +13,8 @@ export const useCartStore = defineStore("cart", {
         subTotal: 0,
         tax: 0,
         total: 0,
+        discount_total: 0,
+        shipping_total: 0,
     }),
 
     getters: {
@@ -87,13 +89,16 @@ export const useCartStore = defineStore("cart", {
                     title: line.title,
                     quantity: line.quantity,
                     price: line.price,
+                    stock: line.stock,
                     image: line.image,
                     slug: line.slug,
                 }));
 
-                // this.subTotal = parseFloat(data?.totals.subTotal.replace(/[^0-9.-]+/g, ""));
-                // this.tax = parseFloat(data?.totals.tax.replace(/[^0-9.-]+/g, ""));
-                // this.total = parseFloat(data?.totals.total.replace(/[^0-9.-]+/g, ""));
+                this.subTotal = data?.totals.subTotal || 0;
+                this.tax = data?.totals.tax || 0;
+                this.total = data?.totals.total || 0;
+                this.discount_total = data?.totals.discount_total || 0;
+                this.shipping_total = data?.totals.shipping_total || 0;
             } catch (err) {
                 console.error("Error al obtener carrito:", err);
             }
