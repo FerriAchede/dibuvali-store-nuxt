@@ -11,20 +11,35 @@
                 :value="formatCurrency(discount_total - subTotal)" />
             <SummaryItem
                 label="Envío"
-                :value="formatCurrency(shipping_total - subTotal)" />
+                :value="
+                    shipping || formatCurrency(shipping_total - subTotal)
+                " />
             <SummaryItem label="Impuestos" :value="formatCurrency(tax)" />
             <hr class="border-slate-300" />
-            <SummaryItem label="Total" :value="formatCurrency(total)" bold />
+            <SummaryItem
+                label="Total"
+                :value="
+                    formatCurrency(
+                        parseCurrency(total) + parseCurrency(shipping)
+                    )
+                "
+                bold />
         </ul>
         <div class="space-y-4 mt-8">
             <button
                 v-if="parseCurrency(total) > 0"
                 type="button"
                 class="rounded-md px-4 py-2.5 w-full text-sm font-medium tracking-wide bg-[var(--color-morado)] hover:bg-[var(--color-morado-hover)] text-white cursor-pointer flex items-center justify-center"
-                :disabled="loading"
+                :disabled="loading || checkoutStore.loading"
                 @click="$emit('submit-order')">
-                <span>Completar Compra</span>
+                {{ checkoutStore.loading ? "Procesando..." : "Procesar pago" }}
             </button>
+            <p v-if="checkoutStore.error" class="text-red-500 mt-2">
+                {{ checkoutStore.error }}
+            </p>
+            <p v-if="checkoutStore.success" class="text-green-600 mt-2">
+                {{ checkoutStore.success }}
+            </p>
             <button
                 type="button"
                 @click="router.push('/products')"
@@ -38,9 +53,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import SummaryItem from "./SummaryItem.vue";
-import LoadingSpinner from "../decoration/LoadingSpinner.vue";
 
 const router = useRouter();
+const checkoutStore = useCheckoutStore();
+
 const cart = useCartStore();
 const {
     total,
@@ -50,6 +66,8 @@ const {
     shipping_total = 0,
     loading,
 } = storeToRefs(cart);
+
+const shipping = ref("€5.00"); // Default shipping cost
 
 function parseCurrency(value) {
     if (typeof value === "string") {
@@ -63,10 +81,13 @@ function formatCurrency(value) {
 }
 
 watch(total, (newTotal) => {
-    if (newTotal == 0) {
-        router.push("/");
+    if (parseCurrency(newTotal) === 0) {
+        setTimeout(() => {
+            if (router.currentRoute.value.path === "/checkout")
+                router.push("/");
+        }, 300);
     }
 });
 
-defineEmits(['submit-order'])
+defineEmits(["submit-order"]);
 </script>

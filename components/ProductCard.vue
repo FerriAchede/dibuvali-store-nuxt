@@ -1,4 +1,6 @@
 <script setup>
+import image_placeholder from "../../assets/placeholder.webp";
+
 const props = defineProps({
     product: {
         type: Object,
@@ -26,7 +28,7 @@ const resetImage = () => {
                 @mouseleave="product.hover_image && resetImage()">
                 <div class="image-wrapper">
                     <img
-                        :src="product.image"
+                        :src="product.image || image_placeholder"
                         :alt="product.title"
                         class="base-img"
                         :class="{

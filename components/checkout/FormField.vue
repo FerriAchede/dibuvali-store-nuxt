@@ -13,10 +13,11 @@
                 class="flex items-center gap-2 text-xs text-[var(--color-morado-hover)] hover:text-[var(--color-morado)] cursor-pointer">
                 <Field
                     v-bind="field"
-                    :id="id"
+                    :id="id || name"
                     :name="name"
                     :type="type"
                     value="true"
+                    v-model="checkoutStore.formData[name]"
                     class="accent-[var(--color-morado)]" />
                 {{ label }}
             </label>
@@ -25,26 +26,37 @@
         <Field
             v-else
             v-bind="field"
-            :id="id"
+            :id="id || name"
             :name="name"
             :type="type"
             :placeholder="placeholder"
+            v-model="checkoutStore.formData[name]"
             class="px-3 py-[11px] text-xs border-2 border-[var(--color-morado)] rounded focus:outline-none w-full"
             :as="'input'" />
-
-        <ErrorMessage :name="name" v-slot="{ message }">
-            <span class="text-red-500 text-xs mt-1">{{ message }}</span>
-        </ErrorMessage>
+        <!--        <span class="text-red-500 text-sm" v-if="checkoutStore.error?.[name]">
+            {{ checkoutStore.error[name] }}
+        </span> -->
     </div>
 </template>
 
 <script setup>
 import { Field, useField, ErrorMessage } from "vee-validate";
 
+const checkoutStore = useCheckoutStore();
+
 const props = defineProps({
-    name: String,
-    label: String,
-    id: String,
+    name: {
+        type: String,
+        required: true,
+    },
+    label: {
+        type: String,
+        required: false,
+    },
+    id: {
+        type: String,
+        required: false,
+    },
     type: {
         type: String,
         default: "text",
@@ -52,5 +64,5 @@ const props = defineProps({
     placeholder: String,
 });
 
-const { field, errorMessage } = useField(props.name);
+const { field } = useField(props.name);
 </script>

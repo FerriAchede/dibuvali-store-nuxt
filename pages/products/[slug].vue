@@ -186,12 +186,18 @@ const addToCart = () => {
                         Sin stock
                     </button>
                 </div>
+                <div v-if="cart.items.length > 0" class="mt-6">
+                    <NuxtLink
+                        to="/checkout"
+                        class="checkout flex items-center justify-center rounded-md text-[var(--color-background)] bg-[var(--color-morado)] px-6 py-3 font-medium shadow hover:bg-[var(--color-morado-hover)]">
+                        Ir al pago
+                    </NuxtLink>
+                </div>
             </div>
         </div>
         <div
             v-if="product"
-            class="flex justify-center items-center py-10"
-            style="background-color: var(--color-background-content)">
+            class="flex justify-center items-center py-10 bg-[var(--color-background-content)]">
             <p class="text-gray-600">
                 ¿No encuentras lo que buscas?
                 <NuxtLink
@@ -202,7 +208,9 @@ const addToCart = () => {
             </p>
         </div>
     </div>
-    <div v-else style="background-color: var(--color-background-content)">
+    <div
+        v-else
+        class="flex items-center justify-center bg-[var(--color-background-content)]">
         <LoadingSpinner />
     </div>
 </template>
@@ -215,5 +223,10 @@ const addToCart = () => {
     background-color: var(--color-background-content);
     box-shadow: -20px 0 15px -5px #ffeae9b3, 20px 0 15px -5px #ffeae9b3;
     padding: 30px 30px;
+}
+
+a.checkout {
+    transition: all 0.2s ease;
+    color: var(--color-background);
 }
 </style>
