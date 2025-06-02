@@ -32,5 +32,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
 
-  
+  icon: {
+    collections: [
+      'mingcute',
+    ],
+  }
 })

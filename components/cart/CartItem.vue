@@ -3,7 +3,7 @@
         <div
             class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
             <img
-                :src="item.image || '/images/placeholder.png'"
+                :src="item.image || '/assets/placeholder.webp'"
                 :alt="item.title"
                 class="size-full object-cover" />
         </div>

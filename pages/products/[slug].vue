@@ -6,6 +6,7 @@ import "swiper/css/thumbs";
 import "swiper/css/navigation";
 import StarDecoration from "~/components/decoration/StarDecoration.vue";
 import LoadingSpinner from "~/components/decoration/LoadingSpinner.vue";
+import image_placeholder from "../../assets/placeholder.webp";
 
 const route = useRoute();
 const config = useRuntimeConfig();
@@ -48,7 +49,7 @@ const addToCart = () => {
                     class="rounded-xl mb-6">
                     <SwiperSlide>
                         <img
-                            :src="product.image"
+                            :src="product.image || image_placeholder"
                             class="w-full h-auto object-cover rounded-2xl" />
                     </SwiperSlide>
 
