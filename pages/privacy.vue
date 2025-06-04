@@ -79,4 +79,11 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Política de Privacidad | Dibu Vali Tienda',
+  meta: [
+    { name: 'description', content: 'En Dibu Vali Tienda, tu privacidad es una prioridad. Descubre cómo recopilamos, usamos y protegemos tus datos personales.' },
+    { name: 'keywords', content: 'privacidad, política de privacidad, datos personales, Dibu Vali Tienda, protección de datos' },
+  ],
+});
 </script>

@@ -75,4 +75,11 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Contacto | Dibu Vali Tienda',
+  meta: [
+    { name: 'description', content: 'Ponte en contacto con Dibu Vali Tienda para cualquier consulta, pregunta o sugerencia. Aquí encontrarás los detalles de contacto y nuestras redes sociales.' },
+    { name: 'keywords', content: 'contacto, Dibu Vali Tienda, artista, email, redes sociales' },
+  ],
+});
 </script>

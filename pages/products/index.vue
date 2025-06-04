@@ -1,5 +1,13 @@
 <script setup>
-import LoadingSpinner from '@/components/decoration/LoadingSpinner.vue';
+
+useHead({
+  title: 'Productos - Dibu Vali',
+  meta: [
+    { name: 'description', content: 'Explora los productos únicos de Dibu Vali.' },
+    { name: 'keywords', content: 'productos, tienda, Dibu Vali, arte, diseño' },
+  ],
+});
+
 const route = useRoute();
 const router = useRouter();
 

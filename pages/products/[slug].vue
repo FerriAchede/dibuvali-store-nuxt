@@ -17,6 +17,18 @@ const product = computed(() => data.value?.data);
 const quantity = ref(1);
 const thumbsSwiper = ref(null);
 
+useHead({
+  title: `${product.value.title} - Dibu Vali`,
+  meta: [
+    { name: 'description', content: 'Explora los productos únicos de Dibu Vali.' },
+    { name: 'keywords', content: 'productos, tienda, Dibu Vali, arte, diseño' },
+    { name: 'og:title', content: product.value.title },
+    { name: 'og:description', content: product.value.description || 'Descubre nuestros productos únicos.' },
+    { name: 'og:image', content: product.value.image || image_placeholder },
+    { name: 'og:url', content: `${config.public.siteUrl}/products/${product.value.slug}` },
+  ],
+});
+
 function setThumbsSwiper(swiper) {
     thumbsSwiper.value = swiper;
 }

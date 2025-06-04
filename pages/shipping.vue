@@ -66,4 +66,11 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Información de Envíos | Dibu Vali Tienda',
+  meta: [
+    { name: 'description', content: 'Conoce los detalles sobre los envíos de productos en Dibu Vali Tienda. Información sobre plazos, costes y contacto.' },
+    { name: 'keywords', content: 'envíos, Dibu Vali Tienda, España, plazos de entrega, costes de envío' },
+  ],
+});
 </script>

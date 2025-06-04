@@ -55,4 +55,11 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Términos y Condiciones | Dibu Vali Tienda',
+  meta: [
+    { name: 'description', content: 'Lee los términos y condiciones de uso de Dibu Vali Tienda. Aquí encontrarás información sobre el uso del sitio, propiedad intelectual, privacidad y más.' },
+    { name: 'keywords', content: 'términos y condiciones, Dibu Vali Tienda, uso del sitio, propiedad intelectual, privacidad' },
+  ],
+});
 </script>

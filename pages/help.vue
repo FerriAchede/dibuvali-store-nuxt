@@ -67,4 +67,11 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Ayuda | Dibu Vali Tienda',
+  meta: [
+    { name: 'description', content: 'Encuentra respuestas a las preguntas más frecuentes y soporte para cualquier duda sobre el uso del sitio y la compra de productos en Dibu Vali Tienda.' },
+    { name: 'keywords', content: 'ayuda, preguntas frecuentes, soporte, Dibu Vali Tienda, pedidos, contacto' },
+  ],
+});
 </script>

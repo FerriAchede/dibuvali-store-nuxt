@@ -25,6 +25,16 @@ import OrderSummary from "@/components/checkout/OrderSummary.vue";
 //import { checkoutSchema } from "@/utils/checkoutSchema.js";
 import { Form, useForm } from "vee-validate";
 
+useHead({
+  title: 'Checkout - Dibu Vali Tienda',
+  meta: [
+    {
+      name: 'description',
+      content: 'Completa tu compra en Dibu Vali Tienda con nuestro sencillo proceso de checkout.',
+    },
+  ],
+});
+
 const checkoutStore = useCheckoutStore();
 const cartStore = useCartStore();
 const router = useRouter();

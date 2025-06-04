@@ -7,7 +7,15 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
+      title: 'Dibu Vali Store',
+      htmlAttrs: {
+        lang: 'es',
+      },
+      meta: [
+        { name: 'description', content: 'Tienda online de arte original' },
+      ],
       link: [
+        // { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap' },
       ]
     }
