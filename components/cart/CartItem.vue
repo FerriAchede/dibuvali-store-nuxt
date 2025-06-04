@@ -2,7 +2,7 @@
     <li class="flex py-6">
         <div
             class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-            <img
+            <NuxtImg
                 :src="item.image || '/assets/placeholder.webp'"
                 :alt="item.title"
                 class="size-full object-cover" />

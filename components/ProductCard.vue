@@ -1,6 +1,6 @@
 <script setup>
 import image_placeholder from "../../assets/placeholder.webp";
-
+import LoadingSpinner from "@/components/decoration/LoadingSpinner.vue";
 const props = defineProps({
     product: {
         type: Object,
@@ -9,6 +9,9 @@ const props = defineProps({
 });
 
 const isHovered = ref(false);
+const isLoaded = ref(false);
+
+const currentImage = ref(props.product.image || image_placeholder);
 
 const setHoverImage = () => {
     isHovered.value = true;
@@ -17,6 +20,25 @@ const setHoverImage = () => {
 const resetImage = () => {
     isHovered.value = false;
 };
+
+const onError = () => {
+    currentImage.value = image_placeholder;
+    isLoaded.value = true;
+};
+
+onMounted(() => {
+    const img = new Image();
+    img.src = currentImage.value;
+
+    if (img.complete) {
+        isLoaded.value = true;
+    } else {
+        img.onload = () => {
+            isLoaded.value = true;
+        };
+        img.onerror = onError;
+    }
+});
 </script>
 
 <template>
@@ -26,20 +48,38 @@ const resetImage = () => {
                 class="product-item"
                 @mouseenter="product.hover_image && setHoverImage()"
                 @mouseleave="product.hover_image && resetImage()">
-                <div class="image-wrapper">
+                <div
+                    class="image-wrapper bg-[var(--color-rosa)/50] border-32-solid border-[var(--color-morado)] rounded-lg shadow-[0_2px_5px_var(--color-morado-hover)]">
+                    <div
+                        v-if="!isLoaded && currentImage !== image_placeholder"
+                        class="absolute inset-0 z-10 flex items-center justify-center bg-[var(--color-rosa)]/20 bg-opacity-70 rounded-md">
+                        <LoadingSpinner />
+                    </div>
                     <img
-                        :src="product.image || image_placeholder"
-                        :alt="product.title"
+                        :src="currentImage"
+                        :alt="isLoaded ? product.title : ''"
                         class="base-img"
                         :class="{
                             'fade-out': isHovered && product.hover_image,
-                        }" />
-                    <img
+                        }"
+                        height="200"
+                        width="200"
+                        loading="lazy"
+                        quality="70"
+                        format="webp"
+                        @load="isLoaded = true"
+                        @error="onError" />
+                    <NuxtImg
                         v-if="product.hover_image"
                         :src="product.hover_image"
-                        :alt="product.title + ' hover'"
+                        :alt="product.title"
                         class="hover-img"
-                        :class="{ 'fade-in': isHovered }" />
+                        :class="{ 'fade-in': isHovered }"
+                        height="200"
+                        width="200"
+                        quality="70"
+                        format="webp"
+                        loading="lazy" />
                 </div>
                 <p class="mt-1">{{ product.title }}</p>
                 <span>{{ product.price }} {{ product.currency_code }}</span>
@@ -60,7 +100,6 @@ const resetImage = () => {
     padding: 10px;
     margin-bottom: auto;
 }
-
 
 .product-item img:hover {
     transform: scale(1) translateY(-1px);

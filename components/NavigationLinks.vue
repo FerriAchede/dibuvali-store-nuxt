@@ -8,13 +8,6 @@
 
   <NuxtLink
     @click="$emit('linkClicked')"
-    :to="{ name: 'products-new' }"
-    class="nav-link"
-    active-class="active"
-  >Nuevo</NuxtLink>
-
-  <NuxtLink
-    @click="$emit('linkClicked')"
     :to="{ name: 'products' }"
     class="nav-link"
     active-class="active"
@@ -29,10 +22,10 @@
 
   <NuxtLink
     @click="$emit('linkClicked')"
-    :to="{ name: 'about-me' }"
+    :to="{ name: 'contact' }"
     class="nav-link"
     active-class="active"
-  >Sobre mí</NuxtLink>
+  >Contacto</NuxtLink>
 
 </template>
 

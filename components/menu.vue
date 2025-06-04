@@ -15,7 +15,9 @@
                 src="/logotxt.webp"
                 alt="Dibu Vali"
                 class="profile-pic"
-                :class="{ shrink: isShrunk }" />
+                :class="{ shrink: isShrunk }"
+                width="265"
+                height="50" />
             </NuxtLink>
 
             <nav class="navigation">

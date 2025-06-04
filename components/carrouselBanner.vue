@@ -31,8 +31,11 @@ onMounted(() => {
                         v-for="(banner, index) in [banners[currentIndex]]"
                         :key="banner + currentIndex"
                         :src="banner"
+                        width="1920"
+                        height="450"
+                        format="webp"
                         class="absolute w-full h-full object-cover"
-                        alt="Banner" />
+                        :alt="`Carrousel`" />
                 </transition-group>
             </div>
 
@@ -42,7 +45,7 @@ onMounted(() => {
                     class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold">
                     Explora todo el Merch!
                 </h3>
-                <a href="#" class="explore-btn"> Explorar </a>
+                <a href="/products" class="explore-btn"> Explorar </a>
             </div>
         </div>
     </section>

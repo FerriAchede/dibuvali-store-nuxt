@@ -11,6 +11,9 @@
             <p class="text-gray-700 mb-4">
                 <strong>Referencia:</strong> {{ order.reference }}
             </p>
+            <p class="text-gray-700 mb-4">
+                Por favor, revisa el correo electrónico introducido anteriormente (<strong>{{ checkoutStore.formData.email }}</strong>) para consultar los detalles del pedido.
+            </p>
 
             <NuxtLink
                 to="/"
@@ -23,6 +26,10 @@
 
 <script setup>
 import { useRouter, useRoute } from "vue-router";
+
+useHead({
+  title: 'Pedido realizado con éxito - Dibu  ValiTienda',
+});
 
 const checkoutStore = useCheckoutStore();
 const router = useRouter();

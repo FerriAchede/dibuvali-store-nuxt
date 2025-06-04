@@ -17,7 +17,7 @@
                     class="mr-2 w-6 h-6 bg-transparent border-2 border-[var(--color-morado)] rounded-full peer-checked:bg-[var(--color-morado)] peer-checked:border-[var(--color-morado)] peer-hover:shadow-lg peer-hover:shadow-[var(--color-morado)]/50 peer-checked:shadow-lg peer-checked:shadow-[var(--color-morado)]/50 transition duration-300 ease-in-out"></div>
             </label>
             <div v-if="images && images.length > 0">
-                <img
+                <NuxtImg
                     v-for="(img, i) in images"
                     :key="i"
                     :src="img"

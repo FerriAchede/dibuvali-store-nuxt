@@ -60,14 +60,20 @@ const addToCart = () => {
                     :thumbs="{ swiper: thumbsSwiper }"
                     class="rounded-xl mb-6">
                     <SwiperSlide>
-                        <img
+                        <NuxtImg
                             :src="product.image || image_placeholder"
+                            width="654"
+                            height="654"
+                            :alt="`Imagen del producto ${product.title}`"
                             class="w-full h-auto object-cover rounded-2xl" />
                     </SwiperSlide>
 
                     <SwiperSlide v-for="(img, i) in product.images" :key="i">
-                        <img
+                        <NuxtImg
                             :src="img"
+                            width="80"
+                            height="80"
+                            :alt="`Imagen del producto ${product.title} - ${i + 1}`"
                             class="w-full h-auto object-cover rounded-2xl" />
                     </SwiperSlide>
                 </Swiper>
@@ -83,7 +89,7 @@ const addToCart = () => {
                     <SwiperSlide
                         v-for="(img, i) in [product.image, ...product.images]"
                         :key="'thumb-' + i">
-                        <img
+                        <NuxtImg
                             :src="img"
                             class="rounded-xl border border-transparent hover:border-indigo-600 cursor-pointer transition-all duration-300 w-20 h-20 object-cover" />
                     </SwiperSlide>
