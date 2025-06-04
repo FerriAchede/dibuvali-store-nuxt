@@ -1,5 +1,5 @@
 <script setup>
-import image_placeholder from "../../assets/placeholder.webp";
+import image_placeholder from "~/assets/placeholder.webp";
 import LoadingSpinner from "@/components/decoration/LoadingSpinner.vue";
 const props = defineProps({
     product: {

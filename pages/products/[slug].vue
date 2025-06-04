@@ -6,27 +6,35 @@ import "swiper/css/thumbs";
 import "swiper/css/navigation";
 import StarDecoration from "~/components/decoration/StarDecoration.vue";
 import LoadingSpinner from "~/components/decoration/LoadingSpinner.vue";
-import image_placeholder from "../../assets/placeholder.webp";
+import image_placeholder from "~/assets/placeholder.webp";
+import SkeletonLoader from "~/components/decoration/SkeletonLoader.vue";
 
 const route = useRoute();
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBaseUrl;
 
-const { data } = await useFetch(`${baseUrl}/products/${route.params.slug}`);
+const { data } = useFetch(`${baseUrl}/products/${route.params.slug}`);
 const product = computed(() => data.value?.data);
+const previous = computed(() => data.value?.previous);
+const next = computed(() => data.value?.next);
+
 const quantity = ref(1);
 const thumbsSwiper = ref(null);
 
-useHead({
-  title: `${product.value.title} - Dibu Vali`,
-  meta: [
-    { name: 'description', content: 'Explora los productos únicos de Dibu Vali.' },
-    { name: 'keywords', content: 'productos, tienda, Dibu Vali, arte, diseño' },
-    { name: 'og:title', content: product.value.title },
-    { name: 'og:description', content: product.value.description || 'Descubre nuestros productos únicos.' },
-    { name: 'og:image', content: product.value.image || image_placeholder },
-    { name: 'og:url', content: `${config.public.siteUrl}/products/${product.value.slug}` },
-  ],
+watch(product, (newProduct) => {
+  if (newProduct) {
+    useHead({
+      title: `${newProduct.title} - Dibu Vali`,
+      meta: [
+        { name: "description", content: "Explora los productos únicos de Dibu Vali." },
+        { name: "keywords", content: "productos, tienda, Dibu Vali, arte, diseño" },
+        { name: "og:title", content: newProduct.title },
+        { name: "og:description", content: newProduct.description || "Descubre nuestros productos únicos." },
+        { name: "og:image", content: newProduct.image || image_placeholder },
+        { name: "og:url", content: `${config.public.siteUrl}/products/${newProduct.slug}` },
+      ],
+    });
+  }
 });
 
 function setThumbsSwiper(swiper) {
@@ -60,20 +68,25 @@ const addToCart = () => {
                     :thumbs="{ swiper: thumbsSwiper }"
                     class="rounded-xl mb-6">
                     <SwiperSlide>
-                        <NuxtImg
-                            :src="product.image || image_placeholder"
-                            width="654"
-                            height="654"
-                            :alt="`Imagen del producto ${product.title}`"
-                            class="w-full h-auto object-cover rounded-2xl" />
-                    </SwiperSlide>
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl"></div>
+                            <img
+                                :src="product.image || image_placeholder"
+                                width="654"
+                                height="654"
+                                :alt="`Imagen del producto ${product.title}`"
+                                class="w-full h-auto object-cover rounded-2xl relative" />
+                        </div>
+                        </SwiperSlide>
 
                     <SwiperSlide v-for="(img, i) in product.images" :key="i">
                         <NuxtImg
                             :src="img"
                             width="80"
                             height="80"
-                            :alt="`Imagen del producto ${product.title} - ${i + 1}`"
+                            :alt="`Imagen del producto ${product.title} - ${
+                                i + 1
+                            }`"
                             class="w-full h-auto object-cover rounded-2xl" />
                     </SwiperSlide>
                 </Swiper>
@@ -81,7 +94,7 @@ const addToCart = () => {
                 <Swiper
                     v-if="[product.image, ...product.images].length > 1"
                     :modules="[Thumbs]"
-                    slides-per-view="5"
+                    :slides-per-view="5"
                     space-between="10"
                     watch-slides-progress
                     @swiper="setThumbsSwiper"
@@ -226,11 +239,9 @@ const addToCart = () => {
             </p>
         </div>
     </div>
-    <div
-        v-else
-        class="flex items-center justify-center bg-[var(--color-background-content)]">
-        <LoadingSpinner />
-    </div>
+    <SkeletonLoader v-else />
+
+  <ProductNavigation :next="next" :previous="previous" />
 </template>
 
 <style scoped>
