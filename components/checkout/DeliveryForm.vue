@@ -5,7 +5,7 @@
         </h2>
         <div class="grid lg:grid-cols-2 gap-y-6 gap-x-4">
             <FormField label="Nombre" name="name" />
-            <FormField label="Apellido" name="surname" />
+            <FormField label="Apellido/s" name="surname" />
             <FormField label="Correo Electrónico" name="email" type="email" />
             <FormField label="Teléfono" name="phone" />
             <FormField label="Dirección" name="address" />

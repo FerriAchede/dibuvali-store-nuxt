@@ -33,9 +33,9 @@
             v-model="checkoutStore.formData[name]"
             class="px-3 py-[11px] text-xs border-2 border-[var(--color-morado)] rounded focus:outline-none w-full"
             :as="'input'" />
-        <!--        <span class="text-red-500 text-sm" v-if="checkoutStore.error?.[name]">
+               <span class="text-red-500 text-sm" v-if="checkoutStore.error?.[name]">
             {{ checkoutStore.error[name] }}
-        </span> -->
+        </span>
     </div>
 </template>
 

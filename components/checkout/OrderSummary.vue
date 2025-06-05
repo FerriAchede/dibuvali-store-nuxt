@@ -34,12 +34,6 @@
                 @click="$emit('submit-order')">
                 {{ checkoutStore.loading ? "Procesando..." : "Procesar pago" }}
             </button>
-            <p v-if="checkoutStore.error" class="text-red-500 mt-2">
-                {{ checkoutStore.error }}
-            </p>
-            <p v-if="checkoutStore.success" class="text-green-600 mt-2">
-                {{ checkoutStore.success }}
-            </p>
             <button
                 type="button"
                 @click="router.push('/products')"
