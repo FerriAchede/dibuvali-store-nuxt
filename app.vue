@@ -1,6 +1,16 @@
+<script setup>
+import { useCartStore } from "~/stores/cartStore";
+
+const cartStore = useCartStore();
+onMounted(() => {
+    cartStore.fetchCart();
+});
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+    <NuxtLayout>
+        <NuxtPage />
+    </NuxtLayout>
 </template>
+
+<style></style>

@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+
+/* Colores globales */
+:root {
+    --color-background-content: #FFEAE9;
+    --color-footer: #fdeae0;
+    --color-background: #FFEFEE;
+    --color-azul-celeste: #2AFFF7;
+    --color-morado: #823BFB;
+    --color-morado-hover: #7331e6;
+    --color-rosa: #FF6A9B;
+    --color-rosa-hover: #f0578a;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Helvetica', 'Arial', sans-serif; */
+    background-color: var(--color-background);
+    overflow-x: hidden;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: var(--color-morado);
+    transition: transform 0.2s ease, color 0.1s ease;
+}
+
+/* Barra scroll */
+
+::-webkit-scrollbar {
+    width: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-morado);
+    border-radius: 12px;
+    border: 3px solid var(--color-footer);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--color-background);
+}
+
+@-moz-document url-prefix() {
+    * {
+        scrollbar-width: auto;
+        scrollbar-color: var(--color-morado) var(--color-footer);
+    }
+}
+
+/* Efectos de hover */
+.navigation a:hover, .left-icons a:hover, .footer-links a:hover, .pages li a:hover {
+    transform: scale(1.02);
+    color: var(--color-morado-hover);
+}
+
+/* Efecto aparición */
+/* .hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+} */
+/* 
+.show {
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+/* Media Queries */
+@media (min-width: 1200px) { /* A partir de xl */
+    .w-xl-auto {
+        width: auto !important;
+    }
+}
