@@ -14,20 +14,7 @@ const config = useRuntimeConfig();
 const baseUrl = config.public.apiBaseUrl;
 
 const { data } = useFetch(`${baseUrl}/products/${route.params.slug}`);
-const product = computed(() => {
-    if (data.value?.data) {
-        if (data.value.data.image?.startsWith('http://')) {
-            data.value.data.image = data.value.data.image.replace('http://', 'https://');
-        }
-        if (Array.isArray(data.value.data.images)) {
-            data.value.data.images = data.value.data.images.map(img =>
-                img.startsWith('http://') ? img.replace('http://', 'https://') : img
-            );
-        }
-    }
-    return data.value?.data;
-});
-
+const product = computed(() => data.value?.data);
 const previous = computed(() => data.value?.previous);
 const next = computed(() => data.value?.next);
 
@@ -84,7 +71,7 @@ const addToCart = () => {
                         <div class="relative">
                             <div class="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl"></div>
                             <img
-                                :src="product.image || image_placeholder"
+                                :src="(product.image || image_placeholder).replace(/^http:/, 'https:')"
                                 width="654"
                                 height="654"
                                 :alt="`Imagen del producto ${product.title}`"
@@ -94,7 +81,7 @@ const addToCart = () => {
 
                     <SwiperSlide v-for="(img, i) in product.images" :key="i">
                         <NuxtImg
-                            :src="img"
+                            :src="img.replace(/^http:/, 'https:')"
                             width="80"
                             height="80"
                             :alt="`Imagen del producto ${product.title} - ${
@@ -116,7 +103,7 @@ const addToCart = () => {
                         v-for="(img, i) in [product.image, ...product.images]"
                         :key="'thumb-' + i">
                         <NuxtImg
-                            :src="img"
+                            :src="img.replace(/^http:/, 'https:')"
                             class="rounded-xl border border-transparent hover:border-indigo-600 cursor-pointer transition-all duration-300 w-20 h-20 object-cover" />
                     </SwiperSlide>
                 </Swiper>
