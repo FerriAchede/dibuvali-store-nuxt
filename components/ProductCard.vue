@@ -114,11 +114,11 @@ span {
 
 .product-item p {
     margin-bottom: 0;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .product-item span {
-    color: #813bfbd8;
+    color: var(--color-azul-morado);
     font-weight: 600;
 }
 

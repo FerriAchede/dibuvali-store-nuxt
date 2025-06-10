@@ -110,7 +110,7 @@ const addToCart = () => {
             </div>
             <div>
                 <h1
-                    class="text-3xl font-semibold mb-4 text-[var(--color-morado)]">
+                    class="text-3xl font-bold mb-4 text-[var(--color-morado)]">
                     {{ product.title }}
                 </h1>
                 <div class="flex items-center mb-6">

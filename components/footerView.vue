@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <h4>ENLACES RÁPIDOS</h4>
+        <h2>ENLACES RÁPIDOS</h2>
         <div
             class="footer-links grid grid-cols-2 gap-y-3 gap-x-8 place-items-center md:flex md:justify-between md:gap-9">
             <NuxtLink to="/">Inicio</NuxtLink>
@@ -42,7 +42,7 @@ footer {
     box-shadow: 0 -0.5px 2px rgba(0, 0, 0, 0.3);
 }
 
-footer h4 {
+footer h2 {
     color: var(--color-morado);
     font-weight: 500;
     font-size: 1.3rem;
