@@ -3,7 +3,11 @@
         <div
             class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
             <NuxtImg
-                :src="item.image || '/assets/placeholder.webp'"
+                :src="
+                    item.image?.startsWith('http://')
+                        ? item.image.replace('http://', 'https://')
+                        : item.image || '/assets/placeholder.webp'
+                "
                 :alt="item.title"
                 class="size-full object-cover" />
         </div>
@@ -27,8 +31,11 @@
             </div>
 
             <div class="flex flex-1 items-end justify-between text-sm">
-                <div v-if="!cart.loading" class="flex items-center gap-1 w-full sm:col-span-1">
-                    <div class="flex items-center border border-gray-400 rounded-md shadow-sm overflow-hidden">
+                <div
+                    v-if="!cart.loading"
+                    class="flex items-center gap-1 w-full sm:col-span-1">
+                    <div
+                        class="flex items-center border border-gray-400 rounded-md shadow-sm overflow-hidden">
                         <button
                             @click="quantity = Math.max(1, quantity - 1)"
                             class="py-1 px-2 transition-all duration-300 hover:bg-gray-200 active:scale-95">
@@ -44,7 +51,9 @@
                             placeholder="1" />
 
                         <button
-                            @click="quantity = Math.min(item.stock, quantity + 1)"
+                            @click="
+                                quantity = Math.min(item.stock, quantity + 1)
+                            "
                             class="py-1 px-2 transition-all duration-300 hover:bg-gray-200 active:scale-95">
                             <Icon name="mingcute:add-fill" />
                         </button>

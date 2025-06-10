@@ -56,7 +56,9 @@ onMounted(() => {
                         <LoadingSpinner />
                     </div>
                     <img
-                        :src="currentImage"
+                        :src="currentImage?.startsWith('http://')
+                        ? currentImage.replace('http://', 'https://')
+                        : currentImage"
                         :alt="isLoaded ? product.title : ''"
                         class="base-img"
                         :class="{
@@ -71,7 +73,9 @@ onMounted(() => {
                         @error="onError" />
                     <NuxtImg
                         v-if="product.hover_image"
-                        :src="product.hover_image"
+                        :src="product.hover_image?.startsWith('http://')
+                        ? product.hover_image.replace('http://', 'https://')
+                        : product.hover_image"
                         :alt="product.title"
                         class="hover-img"
                         :class="{ 'fade-in': isHovered }"

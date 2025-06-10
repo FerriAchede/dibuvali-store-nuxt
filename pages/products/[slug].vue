@@ -14,7 +14,20 @@ const config = useRuntimeConfig();
 const baseUrl = config.public.apiBaseUrl;
 
 const { data } = useFetch(`${baseUrl}/products/${route.params.slug}`);
-const product = computed(() => data.value?.data);
+const product = computed(() => {
+    if (data.value?.data) {
+        if (data.value.data.image?.startsWith('http://')) {
+            data.value.data.image = data.value.data.image.replace('http://', 'https://');
+        }
+        if (Array.isArray(data.value.data.images)) {
+            data.value.data.images = data.value.data.images.map(img =>
+                img.startsWith('http://') ? img.replace('http://', 'https://') : img
+            );
+        }
+    }
+    return data.value?.data;
+});
+
 const previous = computed(() => data.value?.previous);
 const next = computed(() => data.value?.next);
 
