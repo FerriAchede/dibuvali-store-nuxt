@@ -2,9 +2,9 @@
 import { ref, onMounted } from "vue";
 
 const banners = [
-    "/imgs/banner/gato_azul.jpg",
-    "/imgs/banner/valio.jpg",
-    "/imgs/banner/fuecoco.jpg",
+    "/imgs/banner/gato_azul.webp",
+    "/imgs/banner/valio.webp",
+    "/imgs/banner/fuecoco.webp",
 ];
 
 const currentIndex = ref(0);

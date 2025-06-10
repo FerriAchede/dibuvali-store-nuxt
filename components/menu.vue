@@ -10,14 +10,13 @@
 
         <div class="logo-nav-container">
             <NuxtLink to="/">
-
-            <img
-                src="/logotxt.webp"
-                alt="Dibu Vali"
-                class="profile-pic"
-                :class="{ shrink: isShrunk }"
-                width="265"
-                height="50" />
+                <img
+                    src="/logotxt.webp"
+                    alt="Dibu Vali"
+                    class="profile-pic"
+                    :class="{ shrink: isShrunk }"
+                    width="265"
+                    height="50" />
             </NuxtLink>
 
             <nav class="navigation">
@@ -27,7 +26,10 @@
 
         <div class="icons">
             <Icon name="mingcute:user-4-fill" />
-            <button @click="openCart">
+            <button
+                @click="openCart"
+                aria-label="Abrir carrito de compras"
+                title="Abrir carrito de compras">
                 <Icon name="mingcute:shopping-cart-2-fill" />
             </button>
         </div>
@@ -41,7 +43,7 @@
         <div class="flex justify-between items-center h-full">
             <button
                 @click="showMenu = !showMenu"
-                aria-label="Toggle navigation"
+                aria-label="Abrir o cerrar navegación"
                 class="flex items-center">
                 <Icon
                     name="mingcute:align-justify-fill"
@@ -62,7 +64,11 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <button @click="openCart" class="flex items-center">
+                <button
+                    @click="openCart"
+                    class="flex items-center"
+                    aria-label="Abrir carrito de compras"
+                    title="Abrir carrito de compras">
                     <Icon name="mingcute:shopping-cart-2-fill" />
                 </button>
                 <NuxtLink to="/" class="flex items-center">
@@ -76,7 +82,7 @@
             v-if="showMenu"
             class="mobile-navbar navigation flex flex-col gap-3 py-4 pb-3 px-7"
             :class="{ shrink: isShrunk, 'shrink-more': isShrunkMore }">
-            <NavigationLinks @link-clicked="showMenu = false"/>
+            <NavigationLinks @link-clicked="showMenu = false" />
         </nav>
     </Transition>
     <CartView />
@@ -109,6 +115,7 @@ const openCart = () => {
     cart.toggleCart();
 };
 </script>
+
 <style scoped>
 .active {
     font-weight: 500;

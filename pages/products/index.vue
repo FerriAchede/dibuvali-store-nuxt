@@ -35,7 +35,6 @@ const changePage = (page) => {
     currentPage.value = page;
     router.push({ query: { ...route.query, page } });
 };
-console.log(products);
 </script>
 
 <template>
@@ -72,6 +71,10 @@ console.log(products);
                 status === 'success' &&
                 (!products?.data || products.data.length === 0)
             ">
+            <p>No products available.</p>
+        </div>
+
+        <div v-else>
             <p>No products available.</p>
         </div>
     </section>
