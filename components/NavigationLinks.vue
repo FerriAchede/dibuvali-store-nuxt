@@ -13,12 +13,6 @@
     active-class="active"
   >Productos</NuxtLink>
 
-  <NuxtLink
-    @click="$emit('linkClicked')"
-    :to="{ name: 'products-collection', params: { collection: 'asd' } }"
-    class="nav-link"
-    active-class="active"
-  >Colecciones</NuxtLink>
 
   <NuxtLink
     @click="$emit('linkClicked')"
@@ -35,5 +29,10 @@ const emit = defineEmits(['linkClicked']);
 </script>
 
 <style>
-
+/*   <NuxtLink
+    @click="$emit('linkClicked')"
+    :to="{ name: 'products-collection', params: { collection: 'asd' } }"
+    class="nav-link"
+    active-class="active"
+  >Colecciones</NuxtLink> */
 </style>

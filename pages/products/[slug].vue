@@ -100,7 +100,7 @@ const addToCart = () => {
                     @swiper="setThumbsSwiper"
                     class="nav-for-slider">
                     <SwiperSlide
-                        v-for="(img, i) in [product.image, ...product.images]"
+                        v-for="(img, i) in product.images"
                         :key="'thumb-' + i">
                         <NuxtImg
                             :src="img.replace(/^http:/, 'https:')"

@@ -69,7 +69,7 @@ const { data: products, status } = await useFetch(
 <style>
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--color-morado);
+    color: var(--color-morado) !important;
     opacity: 1;
     visibility: visible;
     position: absolute;
